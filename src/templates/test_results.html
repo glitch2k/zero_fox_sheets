@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    {% for item in sheets %}
+        {{ item.group }} <br>
+        {{ item.what }} <br>
+        {{ item.how }} <br>
+    {% endfor %}
+{% endblock %}

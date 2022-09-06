@@ -1,26 +1,30 @@
-{% extends "base.html" %}
-{% block title %}
-    Zero Fox Sheets
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Fox Sheets</title>
+</head>
+<body>
+    
+    <!-- section for header -->
+    <header>
+        <img src="./images/zero_fox_img.png" alt="zero fox logo">
+        <span>
+            <h1> Zero Fox Perf</h1>
+        </span>
+    </header>
 
-{% block body %}
-
-<!-- Display flash message after cheat sheet have been sent to be stored in database -->
+    <!-- Display flash message after cheat sheet have been sent to be stored in database -->
 
     {% for message in get_flashed_messages()%}
-    {{ message }}
+        {{ message }}
     {% endfor %}
     
-    
+
     <!-- section to search for cheat sheets -->
-    <div>
-        <form action="/search" method="post">
-            <label for="search_kword">Enter keyword for Cheat Sheet Search</label>
-            <input type="text" name="search_kword" id="search_kword">            
-            <input type="submit" value="Search for Cheat Sheets" class=" btn submit_btn">            
-        </form>
-    </div>
-    
+   
     <!-- section for  entering cheat sheet entriew -->
     <div>
         <form action="#" method="post">
@@ -34,11 +38,11 @@
             
             <label for="what">What do You Want to do</label>
             <input type="text" name="what" id="what">
-            
-            
+        
+
             <label for="how">How to do it</label>
             <input type="text" name="how" id="how">
-            
+
             <input type="submit" value="Enter Cheat Sheet" class="submit_btn">
         </form>
     </div>
@@ -54,14 +58,13 @@
                 <option value="linux">Linux</option>
                 <option value="html">HTML</option>
             </select>
-            
+
             <input type="submit" value="Return Cheat Sheets for Group" class="submit_btn">
             
         </form>
     </div>
 
-    
-{% endblock %}
-    
+
+
 </body>
 </html>
