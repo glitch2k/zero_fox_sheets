@@ -1,0 +1,42 @@
+version: '3'
+
+
+
+# networks to be used by the services
+networks:
+  zfs_frnt_end:
+  zfs_back_end:
+
+
+
+services:
+  # zfs host service
+  zfs_host:
+    container_name: zfs_host
+    build:
+      context: .
+      dockerfile: zfs.Dockerfile
+    image: zfs_img
+    ports:
+      - '8081:2584'
+    networks:
+      - zfs_back_end
+
+
+
+  # nginx reverse proxy service
+  # zfs_proxy:
+  #   container_name: zfs_proxy
+  #   build:
+  #     context: .
+  #     dockerfile: zfs_rev_prox.Dockerfile
+  #   image: zfs_rev_prox_img
+  #   ports:
+  #     - '80:80'
+  #   networks:
+  #     - zfs_frnt_end
+  #     - zfs_back_end
+
+# http://172.21.0.2:1608/static_test
+
+# http://localhost/static_test
