@@ -7,10 +7,10 @@ networks:
   zfs_frnt_end:
   zfs_back_end:
 
-
+volumes:
+  zfs_mysql_vol:
 
 services:
-  # zfs host service
   zfs_host:
     container_name: zfs_host
     build:
@@ -21,22 +21,31 @@ services:
       - '8081:2584'
     networks:
       - zfs_back_end
+    depends_on:
+      - zfs_db
+
+  zfs_db:
+    image: mysql:8.0.30
+    container_name: zfs_mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: cisco12345
+      MYSQL_DATABASE: fox_sheets
+      MYSQL_USER: foxy
+      MYSQL_PASSWORD: cisco12345
+    networks:
+      - zfs_back_end
+    ports:
+      - 3306:3306 # anything coming to localhost:3306, send it to [zfs_back_end-network]:3306
+    volumes:
+      - zfs_mysql_vol:/var/lib/mysql
 
 
-
-  # nginx reverse proxy service
-  # zfs_proxy:
-  #   container_name: zfs_proxy
-  #   build:
-  #     context: .
-  #     dockerfile: zfs_rev_prox.Dockerfile
-  #   image: zfs_rev_prox_img
-  #   ports:
-  #     - '80:80'
-  #   networks:
-  #     - zfs_frnt_end
-  #     - zfs_back_end
-
-# http://172.21.0.2:1608/static_test
-
-# http://localhost/static_test
+  zfs_db_mgr:
+    image: adminer:4.8.1
+    container_name: zfs_db_adminer
+    ports:
+      - 8181:8080
+    depends_on:
+      - zfs_db
+    networks:
+      - zfs_back_end

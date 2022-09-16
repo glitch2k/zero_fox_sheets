@@ -10,7 +10,10 @@ app = Flask(__name__)
 
 # Flask & SQLAlchemy configs 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cheat_sheets.db'
+
+# SQLAlchemy DB config for using mysql database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://foxy:cisco12345@zfs_mysql_db/fox_sheets'
+
 app.secret_key = "glitch"
 
 # Initialize the database
@@ -19,9 +22,9 @@ db = SQLAlchemy(app)
 # Create the database model (table) to store the cheat sheets
 class SheetsDB(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    group = db.Column(db.String)
-    what = db.Column(db.String)
-    how = db.Column(db.String)
+    group = db.Column(db.String(32))
+    what = db.Column(db.String(256))
+    how = db.Column(db.String(256))
 
 
 
@@ -59,8 +62,6 @@ def home():
         return render_template("index.html")
 
 
-
-
 # ENDPOINT TO SEARCH FOR CHEAT SHEET ENTRIES FROM THE DATABASE & RETURN RESULTS TO USER
 @app.route('/search', methods=["POST"])
 def search():
@@ -83,14 +84,7 @@ def search():
 
 
 
-# SELECT "sheetsDB".id AS "sheetsDB_id", "sheetsDB"."group" AS "sheetsDB_group", "sheetsDB".what AS "sheetsDB_what", "sheetsDB".how AS "sheetsDB_how" FROM "sheetsDB" WHERE "sheetsDB".what = ?
-
-
-
-
-
 
 #######################################################   
 if __name__ == '__main__':
-    # from db import db
     app.run(host ='0.0.0.0', port = 2584, debug = True) 
