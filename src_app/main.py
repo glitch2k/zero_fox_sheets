@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request, flash
 from flask_sqlalchemy import SQLAlchemy
+import json
 
 
 
@@ -82,6 +83,28 @@ def search():
     # return f'{search_kword}'  
     return render_template("test_results.html", sheets=sheets) 
 
+@app.route('/all', methods=["GET"])
+def all():
+    sheets_pyList = []
+    sheet_pyDict = {}
+
+    sheets = SheetsDB.query.all()
+    # for sheet in sheets:
+    #     sheet_pyDict = {
+    #         'group': sheet["group"],
+    #         'what': sheet["what"],
+    #         'how': sheet["how"]
+    #     }
+    #     sheets_pyList.append(sheet_pyDict)
+    #     sheet_pyDict.clear()
+    # _type = type(sheets)
+    # msg = {
+    #     'entry': _type
+    # }
+    # msg_json = json.dumps(msg)
+    return render_template("test_results.html", sheets=sheets) 
+    # return msg_json 
+    # return sheets_pyList 
 
 
 

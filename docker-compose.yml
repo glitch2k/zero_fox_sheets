@@ -11,14 +11,27 @@ volumes:
   zfs_mysql_vol:
 
 services:
-  zfs_host:
-    container_name: zfs_host
+  zfs_app_host:
+    container_name: zfs_app_host
     build:
-      context: .
-      dockerfile: zfs.Dockerfile
-    image: zfs_img
+      context: ./src_app/
+      dockerfile: zfs_app.Dockerfile
+    image: zfs_app_img
     ports:
       - '8081:2584'
+    networks:
+      - zfs_back_end
+    depends_on:
+      - zfs_db
+
+  zfs_api_host:
+    container_name: zfs_api_host
+    build:
+      context: ./src_api/
+      dockerfile: zfs_api.Dockerfile
+    image: zfs_api_img
+    ports:
+      - '8082:6729'
     networks:
       - zfs_back_end
     depends_on:
@@ -44,7 +57,7 @@ services:
     image: adminer:4.8.1
     container_name: zfs_db_adminer
     ports:
-      - 8181:8080
+      - 8083:8080
     depends_on:
       - zfs_db
     networks:
