@@ -4,6 +4,6 @@ src_app/__pycache__
 src_app/cheat_sheets.db
 test/app_test.py
 .vscode
-test
+test/__pycache__
 src_app/mysql_only_docker-compose.yml
 src_api/mysql_only_docker-compose.yml
