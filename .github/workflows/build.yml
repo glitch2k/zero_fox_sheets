@@ -40,6 +40,6 @@ jobs:
 
       - name: build app stack docker-compose build command
         run: |
-          docker-compose up 
+          docker-compose up -d
 
 
