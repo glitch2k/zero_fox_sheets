@@ -64,12 +64,12 @@ services:
       - zfs_back_end
 
 
-  zfs_api_gtwy:
-    image: nginx:1.23
-    container_name: zfs_api_gtwy
-    ports:
-      - 8084:80
-    depends_on:
-      - zfs_db
-    networks:
-      - zfs_back_end
+  # zfs_api_gtwy:
+  #   image: nginx:1.23
+  #   container_name: zfs_api_gtwy
+  #   ports:
+  #     - 8084:80
+  #   depends_on:
+  #     - zfs_db
+  #   networks:
+  #     - zfs_back_end
