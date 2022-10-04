@@ -1,6 +1,9 @@
 name: build image of core app
 
-on: [push]
+on: 
+  push:
+    branches:
+      - "api_gateway"
 
 jobs:
   build_app_docker_image:
