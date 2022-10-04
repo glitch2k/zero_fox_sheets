@@ -10,6 +10,8 @@ jobs:
     
     runs-on: ubuntu-20.04
 
+    # create a docker stack with github actions commands
+
     steps:
       - name: check-out code
         uses: actions/checkout@v3
@@ -21,4 +23,23 @@ jobs:
         run: |
           cd src_app/
           docker build -f zfs_app.Dockerfile -t zero_fox_sheets:v1 .
+
+      - name: build a stack using docker-compose command
+        run: |
+
+  building_docker_stack_of_app:
+    
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: check-out code
+        uses: actions/checkout@v3
+
+      - name: identify the working directory
+        run: ls -a
+
+      - name: build app stack docker-compose build command
+        run: |
+          docker-compose -up 
+
 
