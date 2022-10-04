@@ -20,5 +20,5 @@ jobs:
       - name: build image using docker build command
         run: |
           cd src_app/
-          docker build -f ./src_app/zfs_app.Dockerfile -t zero_fox_sheets:v1 .
+          docker build -f zfs_app.Dockerfile -t zero_fox_sheets:v1 .
 
