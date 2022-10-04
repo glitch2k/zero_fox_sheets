@@ -4,9 +4,17 @@ on: [push]
 
 jobs:
   build_app_docker_image:
+    
     runs-on: ubuntu-20.04
 
     steps:
       - name: check-out code
         uses: actions/checkout@v3
+
+      - name: identify the working directory
+        run: pwd
+
+      # - name: build image using docker build command
+      #   run: |
+
 
