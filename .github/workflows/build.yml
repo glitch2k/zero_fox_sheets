@@ -14,10 +14,11 @@ jobs:
       - name: check-out code
         uses: actions/checkout@v3
 
-      - name: identify the working directory
-        run: ls -a
+      # - name: identify the working directory
+      #   run: ls -a
 
-      # - name: build image using docker build command
-      #   run: |
+      - name: build image using docker build command
+        run: |
+          docker build -f ./src_app/zfs_app.Dockerfile -t zero_fox_sheets:v1
 
 
